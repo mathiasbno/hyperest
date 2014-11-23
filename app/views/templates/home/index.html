@@ -5,3 +5,21 @@
     <button ng-click="login('facebook')">Facebook</button>
   </form>
 </div>
+
+<div ng-if="currentUser">
+  <h3>Velkommen {{currentUser.first_name}}</h3>
+  <div ng-controller="UrlFetchingCtrl as urlFetchingCtrl">
+    <div class="image" ng-if="urlFetchingCtrl.entry.image_url">
+      <nav>
+        <span ng-click="nextImage()">Next</span>
+        <span ng-click="prevImage()">Previous</span>
+      </nav>
+      <img ng-src="urlFetchingCtrl.entry.image_url">
+    </div>
+    <form>
+      <input type="text" placeholder="URL" ng-keyup="urlFetchingCtrl.fetchUrl(urlFetchingCtrl.entry.url)" ng-model="urlFetchingCtrl.entry.url" />
+      <input type="text" placeholder="Title" ng-model="urlFetchingCtrl.entry.title" />
+      <textarea placeholder="Description" ng-model="urlFetchingCtrl.entry.description"></textarea>
+    </form>
+  </div>
+</div>
