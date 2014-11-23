@@ -1,0 +1,22 @@
+{
+  "name": "Hyperest",
+  "version": "0.0.0",
+  "description": "An app that lets you save the best links.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mathiasbno/hyperest.git"
+  },
+  "author": "Mathias Benjaminsen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mathiasbno/hyperest/issues"
+  },
+  "homepage": "https://github.com/mathiasbno/hyperest",
+  "devDependencies": {
+    "gulp": "^3.8.10"
+  }
+}
