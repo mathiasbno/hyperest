@@ -1,4 +1,4 @@
-angular.module("td").factory "authFactory", ($rootScope, $state, $firebaseSimpleLogin, FIREBASE_URL) ->
+angular.module("hyperest").factory "authFactory", ($rootScope, $state, $firebaseSimpleLogin, FIREBASE_URL) ->
   firebaseRef = new Firebase FIREBASE_URL
   auth = $firebaseSimpleLogin(firebaseRef)
 

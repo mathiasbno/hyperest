@@ -1,4 +1,4 @@
-angular.module("td")
+angular.module("hyperest")
   .controller "LoginCtrl", ($scope, $rootScope, authFactory, userFactory, metaFactory, helperFactory) ->
 
     $scope.loginUser = {

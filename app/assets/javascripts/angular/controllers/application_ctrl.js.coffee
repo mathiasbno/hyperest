@@ -1,4 +1,4 @@
-angular.module("td")
+angular.module("hyperest")
   .controller "ApplicationCtrl", ($state, $rootScope, $scope, authFactory, userFactory, metaFactory, helperFactory) ->
 
     authFactory.auth().then (user) ->

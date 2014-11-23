@@ -1,2 +1,2 @@
-angular.module("td")
+angular.module("hyperest")
   .controller "FrontPageCtrl", ($scope) ->

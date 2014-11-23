@@ -1,4 +1,4 @@
-angular.module("td")
+angular.module("hyperest")
   .config ($locationProvider, $stateProvider, $urlRouterProvider) ->
     $locationProvider.html5Mode true
 
