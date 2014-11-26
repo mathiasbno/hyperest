@@ -6,10 +6,11 @@ angular.module("hyperest").factory "authFactory", ($rootScope, $state, $firebase
 
   factory.auth = ->
     return auth.$getCurrentUser().then (user) ->
-      if user == null && location.pathname != "/"
+      if location.pathname != "/"
         document.location.href = "/"
-      else
-        factory.createCurrentUser(user)
+
+        unless user == null
+          factory.createCurrentUser(user)
 
   factory.login = (provider) ->
     return auth.$login("facebook",
