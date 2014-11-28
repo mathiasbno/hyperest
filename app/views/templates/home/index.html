@@ -19,3 +19,10 @@
     </form>
   </div>
 </div>
+
+<section ng-controller="ListCtrl as listCtrl">
+  <ul ng-if="listCtrl.list.length">
+    <li ng-repeat="listCtrl.list">hello</li>
+  </ul>
+  <span ng-if="!listCtrl.list.length">Ingen innlegg</span>
+</section>
