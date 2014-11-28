@@ -1,8 +1,8 @@
 <h1>Index</h1>
 
 <div ng-if="!currentUser">
-  <form ng-controller="LoginCtrl">
-    <button ng-click="login('facebook')">Facebook</button>
+  <form ng-controller="LoginCtrl as loginCtrl">
+    <button ng-click="loginCtrl.login('facebook')">Facebook</button>
   </form>
 </div>
 
