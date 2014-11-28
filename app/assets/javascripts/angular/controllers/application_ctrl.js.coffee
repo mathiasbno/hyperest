@@ -3,5 +3,7 @@ angular.module("hyperest")
 
     authFactory.auth()
 
-    $scope.logout = ->
+    this.logout = ->
       authFactory.logOut()
+
+    return this
