@@ -6,13 +6,10 @@
   </form>
 </div>
 
-<div ng-if="currentUser">
+<div ng-if="currentUser" ng-controller="PostCtrl as postCtrl">
   <h3>Velkommen {{currentUser.first_name}}</h3>
   <div ng-controller="UrlFetchingCtrl as urlFetchingCtrl">
-    <div class="image">
-      <img ng-src="{{urlFetchingCtrl.entry.image}}" alt="{{urlFetchingCtrl.entry.title}}" ng-if="urlFetchingCtrl.entry.image">
-    </div>
-    <form>
+    <form ng-submit="postCtrl.post(urlFetchingCtrl.entry)">
       <div class="image">
         <img ng-src="{{urlFetchingCtrl.entry.image}}" alt="{{urlFetchingCtrl.entry.title}}">
 
@@ -22,6 +19,7 @@
       <input type="text" placeholder="URL" ng-keyup="urlFetchingCtrl.fetchUrl(urlFetchingCtrl.entry.url)" ng-model="urlFetchingCtrl.entry.url" />
       <input type="text" placeholder="Title" ng-model="urlFetchingCtrl.entry.title" />
       <textarea placeholder="Description" ng-model="urlFetchingCtrl.entry.description"></textarea>
+      <input type="submit" value="Post">
     </form>
   </div>
 </div>
