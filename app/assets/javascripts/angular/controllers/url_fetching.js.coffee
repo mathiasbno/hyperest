@@ -1,5 +1,5 @@
 angular.module("hyperest")
-  .controller "UrlFetchingCtrl", ($scope, $http, fileSaveFactory) ->
+  .controller "UrlFetchingCtrl", ($scope, $http) ->
 
     _this = this
     _this.entry = {}
