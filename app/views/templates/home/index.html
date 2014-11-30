@@ -6,27 +6,36 @@
   </form>
 </div>
 
-<div ng-if="currentUser" ng-controller="PostCtrl as postCtrl">
-  <h3>Velkommen {{currentUser.first_name}}</h3>
+<div ng-if="currentUser" ng-controller="PostCtrl as postCtrl" class="entry-form">
+<!--   <h3>Velkommen {{currentUser.first_name}}</h3> -->
   <div ng-controller="UrlFetchingCtrl as urlFetchingCtrl">
     <form ng-submit="postCtrl.post(urlFetchingCtrl.entry)">
-      <div class="image">
-        <img ng-src="{{urlFetchingCtrl.entry.image}}" alt="{{urlFetchingCtrl.entry.title}}">
-
-        <input type="file" accept="image/*" capture="camera" onchange="angular.element(this).scope().filesSelected(event)" />
-
-      </div>
       <input type="text" placeholder="URL" ng-keyup="urlFetchingCtrl.fetchUrl(urlFetchingCtrl.entry.url)" ng-model="urlFetchingCtrl.entry.url" />
-      <input type="text" placeholder="Title" ng-model="urlFetchingCtrl.entry.title" />
-      <textarea placeholder="Description" ng-model="urlFetchingCtrl.entry.description"></textarea>
-      <input type="submit" value="Post">
+      <div class="entry-form-inner" ng-if="urlFetchingCtrl.entry.url">
+
+        <div class="image">
+          <img ng-src="{{urlFetchingCtrl.entry.image}}" alt="{{urlFetchingCtrl.entry.title}}">
+
+          <input type="file" accept="image/*" capture="camera" onchange="angular.element(this).urlFetchingCtrl.filesSelected(event)" />
+
+        </div>
+        <input type="text" placeholder="Title" ng-model="urlFetchingCtrl.entry.title" />
+        <textarea placeholder="Description" ng-model="urlFetchingCtrl.entry.description"></textarea>
+        <input type="submit" value="Post">
+      </div>
     </form>
   </div>
 </div>
 
 <section ng-controller="ListCtrl as listCtrl">
   <ul ng-if="listCtrl.list.length">
-    <li ng-repeat="listCtrl.list">hello</li>
+    <li ng-repeat="item in listCtrl.list" class="item" packery>
+      <a href="{{item.url}}" target="_blank">
+        <img ng-src="{{item.image}}" alt="{{item.title}}">
+        <h2>{{item.title}}</h2>
+        <p>{{item.description}}</p>
+      </a>
+    </li>
   </ul>
   <span ng-if="!listCtrl.list.length">Ingen innlegg</span>
 </section>
