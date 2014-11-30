@@ -1,5 +1,9 @@
 angular.module("hyperest")
   .controller "ListCtrl", (postFactory) ->
-    this.list = postFactory.list()
 
-    return this
+    _this = this
+
+    postFactory.list().then (list) ->
+      _this.list = list
+
+    return _this
