@@ -90,7 +90,7 @@ gulp.task 'watch', ->
 
   gulp.watch(html_path, ['html'])
   gulp.watch(script_path, ['script'])
-  gulp.watch(lib_path, ['libs'])
+  gulp.watch(lib_path, ['lib'])
   gulp.watch(style_path, ['style'])
   gulp.watch(image_path, ['image'])
 
