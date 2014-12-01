@@ -8,7 +8,6 @@
 
 <div ng-if="currentUser" ng-controller="PostCtrl as postCtrl" class="entry-form">
 <!--   <h3>Velkommen {{currentUser.first_name}}</h3> -->
-  <div ng-controller="UrlFetchingCtrl as urlFetchingCtrl">
     <form ng-submit="postCtrl.post(urlFetchingCtrl.entry)">
       <input type="text" placeholder="URL" ng-keyup="urlFetchingCtrl.fetchUrl(urlFetchingCtrl.entry.url)" ng-model="urlFetchingCtrl.entry.url" />
       <div class="entry-form-inner" ng-if="urlFetchingCtrl.entry.url">

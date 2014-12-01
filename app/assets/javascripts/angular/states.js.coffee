@@ -6,3 +6,4 @@ angular.module("hyperest")
       .state 'home',
         url: '/'
         templateUrl: '/templates/home/index.html'
+        controller: "UrlFetchingCtrl as urlFetchingCtrl"
