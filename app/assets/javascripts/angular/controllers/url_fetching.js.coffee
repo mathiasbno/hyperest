@@ -16,9 +16,11 @@ angular.module("hyperest")
           .success (data, status, headers, config) ->
             _this.entry = {}
             _this.entry = data
+            _this.entry.image_cropped = ""
           .error (data, status, headers, config) ->
 
     $scope.filesSelected = (event) ->
+      $scope.$apply()
       file = event.target.files[0]
 
       reader = new FileReader()

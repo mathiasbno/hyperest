@@ -12,12 +12,13 @@
       <input type="text" placeholder="URL" ng-keyup="urlFetchingCtrl.fetchUrl(urlFetchingCtrl.entry.url)" ng-model="urlFetchingCtrl.entry.url" />
       <div class="entry-form-inner" ng-if="urlFetchingCtrl.entry.url">
 
-        <div class="image">
-          <img ng-src="{{urlFetchingCtrl.entry.image}}" alt="{{urlFetchingCtrl.entry.title}}">
+      <div class="image">
+        <img ng-src="{{urlFetchingCtrl.entry.image_cropped}}" alt="{{urlFetchingCtrl.entry.title}}">
 
-          <input type="file" accept="image/*" capture="camera" onchange="angular.element(this).urlFetchingCtrl.filesSelected(event)" />
+        <input type="file" accept="image/*" capture="camera" onchange="angular.element(this).scope().filesSelected(event)" />
 
-        </div>
+        <img-crop image="urlFetchingCtrl.entry.image" result-image="urlFetchingCtrl.entry.image_cropped" area-type="square" change-on-fly="true" result-image-size="300"></img-crop>
+
         <input type="text" placeholder="Title" ng-model="urlFetchingCtrl.entry.title" />
         <textarea placeholder="Description" ng-model="urlFetchingCtrl.entry.description"></textarea>
         <input type="submit" value="Post">
