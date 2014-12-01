@@ -1,16 +1,20 @@
-<h1>Index</h1>
+<header>
+  <div ng-if="!currentUser">
+    <form ng-controller="LoginCtrl as loginCtrl">
+      <button ng-click="loginCtrl.login('facebook')">Facebook</button>
+    </form>
+  </div>
 
-<div ng-if="!currentUser">
-  <form ng-controller="LoginCtrl as loginCtrl">
-    <button ng-click="loginCtrl.login('facebook')">Facebook</button>
-  </form>
-</div>
+  <input type="text"
+          placeholder="URL"
+          ng-keyup="urlFetchingCtrl.fetchUrl(urlFetchingCtrl.entry.url)"
+          ng-if="currentUser"
+          ng-model="urlFetchingCtrl.entry.url" class="url" />
+</header>
 
-<div ng-if="currentUser" ng-controller="PostCtrl as postCtrl" class="entry-form">
-<!--   <h3>Velkommen {{currentUser.first_name}}</h3> -->
-    <form ng-submit="postCtrl.post(urlFetchingCtrl.entry)">
-      <input type="text" placeholder="URL" ng-keyup="urlFetchingCtrl.fetchUrl(urlFetchingCtrl.entry.url)" ng-model="urlFetchingCtrl.entry.url" />
-      <div class="entry-form-inner" ng-if="urlFetchingCtrl.entry.url">
+<div ng-if="urlFetchingCtrl.entry.url" ng-controller="PostCtrl as postCtrl" class="entry-form-overlay">
+  <form ng-submit="postCtrl.post(urlFetchingCtrl.entry)">
+    <div class="entry-form-inner" ng-if="urlFetchingCtrl.entry.url">
 
       <div class="image">
         <img ng-src="{{urlFetchingCtrl.entry.image_cropped}}" alt="{{urlFetchingCtrl.entry.title}}">
@@ -19,19 +23,19 @@
 
         <img-crop image="urlFetchingCtrl.entry.image" result-image="urlFetchingCtrl.entry.image_cropped" area-type="square" change-on-fly="true" result-image-size="300"></img-crop>
 
-        <input type="text" placeholder="Title" ng-model="urlFetchingCtrl.entry.title" />
-        <textarea placeholder="Description" ng-model="urlFetchingCtrl.entry.description"></textarea>
-        <input type="submit" value="Post">
       </div>
-    </form>
-  </div>
+      <h2 contenteditable ng-model="urlFetchingCtrl.entry.title">{{urlFetchingCtrl.entry.title}}</h2>
+      <p contenteditable ng-model="urlFetchingCtrl.entry.description">{{urlFetchingCtrl.entry.description}}</p>
+      <input type="submit" value="Post">
+    </div>
+  </form>
 </div>
 
 <section ng-controller="ListCtrl as listCtrl">
   <ul ng-if="listCtrl.list.length">
     <li ng-repeat="item in listCtrl.list" class="item" packery>
       <a href="{{item.url}}" target="_blank">
-        <img ng-src="{{item.image}}" alt="{{item.title}}">
+        <img ng-src="{{item.image_cropped}}" alt="{{item.title}}">
         <h2>{{item.title}}</h2>
         <p>{{item.description}}</p>
       </a>
