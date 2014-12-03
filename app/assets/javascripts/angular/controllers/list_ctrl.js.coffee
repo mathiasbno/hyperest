@@ -1,9 +1,10 @@
 angular.module("hyperest")
   .controller "ListCtrl", (postFactory) ->
 
-    _this = this
+    this.fetcing = true
 
-    postFactory.list().then (list) ->
-      _this.list = list
+    postFactory.list().then (list) =>
+      this.list = list
+      this.fetcing = false
 
-    return _this
+    return this
