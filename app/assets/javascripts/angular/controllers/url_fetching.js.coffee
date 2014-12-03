@@ -2,6 +2,7 @@ angular.module("hyperest")
   .controller "UrlFetchingCtrl", ($scope, $http) ->
 
     this.entry = {}
+    this.fetchingUrl = true
 
     this.fetchUrl = (url) =>
       regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
@@ -16,6 +17,7 @@ angular.module("hyperest")
             this.entry = {}
             this.entry = data
             this.entry.image_cropped = ""
+            this.fetchingUrl = false
           .error (data, status, headers, config) ->
 
     $scope.filesSelected = (event) =>

@@ -4,6 +4,9 @@
       <button ng-click="loginCtrl.login('facebook')">Facebook</button>
     </form>
   </div>
+  <div ng-if="currentUser" class="logout">
+    <span ng-click="applicationCtrl.logout()">Logg ut</span>
+  </div>
 
   <input type="text"
           placeholder="URL"
@@ -13,33 +16,35 @@
 </header>
 
 <div ng-if="urlFetchingCtrl.entry.url" ng-controller="PostCtrl as postCtrl" class="entry-form-overlay">
-  <form ng-submit="postCtrl.post(urlFetchingCtrl.entry)">
+  <span ng-if="urlFetchingCtrl.fetchingUrl" class="fetching">
+    Henter informasjon fra url
+  </span>
+  <form ng-submit="postCtrl.post(urlFetchingCtrl.entry)" ng-if="!urlFetchingCtrl.fetchingUrl">
     <div class="entry-form-inner" ng-if="urlFetchingCtrl.entry.url">
 
       <div class="image">
-        <img ng-src="{{urlFetchingCtrl.entry.image_cropped}}" alt="{{urlFetchingCtrl.entry.title}}">
-
         <input type="file" accept="image/*" capture="camera" onchange="angular.element(this).scope().filesSelected(event)" />
-
         <img-crop image="urlFetchingCtrl.entry.image" result-image="urlFetchingCtrl.entry.image_cropped" area-type="square" change-on-fly="true" result-image-size="300"></img-crop>
-
+        <img ng-src="{{urlFetchingCtrl.entry.image_cropped}}" alt="{{urlFetchingCtrl.entry.title}}">
       </div>
-      <h2 contenteditable ng-model="urlFetchingCtrl.entry.title">{{urlFetchingCtrl.entry.title}}</h2>
-      <p contenteditable ng-model="urlFetchingCtrl.entry.description">{{urlFetchingCtrl.entry.description}}</p>
+      <h2 contenteditable placeholder="Tittel" ng-model="urlFetchingCtrl.entry.title">{{urlFetchingCtrl.entry.title}}</h2>
+      <p contenteditable placeholder="Beskrivelse" ng-model="urlFetchingCtrl.entry.description">{{urlFetchingCtrl.entry.description}}</p>
       <input type="submit" value="Post">
     </div>
   </form>
 </div>
 
 <section ng-controller="ListCtrl as listCtrl">
-  <ul ng-if="listCtrl.list.length">
+  <ul ng-if="listCtrl.list.length" class="list">
     <li ng-repeat="item in listCtrl.list" class="item" packery>
       <a href="{{item.url}}" target="_blank">
-        <img ng-src="{{item.image_cropped}}" alt="{{item.title}}">
-        <h2>{{item.title}}</h2>
-        <p>{{item.description}}</p>
+        <img ng-src="{{item.image_cropped}}" alt="{{item.title}}" ng-if="item.image_cropped">
+        <div class="content">
+          <h2>{{item.title}}</h2>
+          <p>{{item.description}}</p>
+        </div>
       </a>
     </li>
   </ul>
-  <span ng-if="!listCtrl.list.length">Ingen innlegg</span>
+  <span class="fetching" ng-if="listCtrl.fetcing">Henter innlegg</span>
 </section>
